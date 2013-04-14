@@ -58,7 +58,9 @@ If you used [blogger2jekyll](https://github.com/coolaj86/blogger2jekyll) to migr
 
 ## License
 
-Copyright &copy; 2013 Patrick Hawks and licensed under either under [The MIT License](http://opensource.org/licenses/MIT) or the [GNU General Public License, version 2 or later](http://opensource.org/licenses/gpl-2.0.php), except for the files noted below.
+Copyright &copy; 2013 Patrick Hawks and licensed under dual licensed under [The MIT License](http://opensource.org/licenses/MIT) and the [GNU General Public License, version 2 or later](http://opensource.org/licenses/gpl-2.0.php), except for the files noted below.
+
+You don't have to do anything special to choose one license or the other and you don't have to notify anyone which license you are using.
 
 ***
 
