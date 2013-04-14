@@ -17,7 +17,7 @@ Copy the following files to your Jekyll site folder.
 
 * `_plugins/static_comments.rb`
 * `_includes/comments.html`
-* `_rake/blogger-comments.rake`
+* `_rake/blogger_comments.rake`
 * `Rakefile` (Not necessary if you already have a Rakefile that loads `_rake/*`)
 
 ### Importing Blogger Comments
