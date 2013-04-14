@@ -44,7 +44,11 @@ If you used [blogger2jekyll](https://github.com/coolaj86/blogger2jekyll) to migr
 
 ## License
 
-`_plugins/static_comments.rb` and `_layouts/comment_template.html` from [jekyll-static-comments](https://github.com/mpalmer/jekyll-static-comments) and licensed under the [GNU General Public License, version 3](http://opensource.org/licenses/gpl-3.0.html)
+This plugin is &copy; 2013 Patrick Hawks and licensed under either under [The MIT License](http://opensource.org/licenses/MIT) or the [GNU General Public License, version 2 or later](http://opensource.org/licenses/gpl-2.0.php), except for the files noted below.
+
+***
+
+`_plugins/static_comments.rb` from [jekyll-static-comments](https://github.com/mpalmer/jekyll-static-comments) and licensed under the [GNU General Public License, version 3](http://opensource.org/licenses/gpl-3.0.html)
 
 ***
 
