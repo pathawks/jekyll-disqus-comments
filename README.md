@@ -28,7 +28,7 @@ Add the following lines to your `_config.yml`
 
     comments:
       disqus:
-        short_name: YOUR-DISQUS-FORM-SHORTNAME-HERE
+        short_name: YOUR-DISQUS-FORUM-SHORTNAME-HERE
         api_key:    YOUR-DISQUS-PUBLIC-KEY-HERE
 
 
