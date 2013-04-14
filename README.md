@@ -1,8 +1,3 @@
-jekyll-disqus-comments
-======================
-
-A system for syncing Disqus comments to Jekyll
-=======
 # Jekyll Disqus comments
 ## Import comments from a Disqus blog into Jekyll
 
