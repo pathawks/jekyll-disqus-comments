@@ -20,9 +20,21 @@ Copy the following files to your Jekyll site folder.
 * `_includes/comments.html`
 * `Rakefile` (Not necessary if you already have a Rakefile that loads `_rake/*`)
 
+### Disqus API Key
+
+To use the plugin, you will need to obtain a [Disqus API key](http://disqus.com/api/applications/) and add it to your `_config.yml`
+
+Add the following lines to your `_config.yml`
+
+    comments:
+      disqus:
+        short_name: YOUR-DISQUS-FORM-SHORTNAME-HERE
+        api_key:    YOUR-DISQUS-PUBLIC-KEY-HERE
+
+
 ### Importing Disqus Comments
 
-Importing comments from Disqus is as simple as running `rake Disquscomments`
+Importing comments from Disqus is as simple as running `rake disquscomments`
 
 ### Template Setup
 
@@ -33,9 +45,6 @@ Copy the following line into your **Post** template where you would like comment
 Alternatively, you could use `_includes/comments.html` as a guide to custom taylor the code to fit your site.
 
 You will also need to add some CSS to style comments appropriately.
-
-### Post Setup
-
 
 ## License
 
