@@ -46,6 +46,7 @@ For each post you would like to add comments to, you will also need to add the f
 
 For example:
 
+    ---
     title: "Example Post"
     layout: "post"
     date: "2013-04-13 20:45:00"
@@ -57,7 +58,7 @@ If you used [blogger2jekyll](https://github.com/coolaj86/blogger2jekyll) to migr
 
 ## License
 
-This plugin is &copy; 2013 Patrick Hawks and licensed under either under [The MIT License](http://opensource.org/licenses/MIT) or the [GNU General Public License, version 2 or later](http://opensource.org/licenses/gpl-2.0.php), except for the files noted below.
+Copyright &copy; 2013 Patrick Hawks and licensed under either under [The MIT License](http://opensource.org/licenses/MIT) or the [GNU General Public License, version 2 or later](http://opensource.org/licenses/gpl-2.0.php), except for the files noted below.
 
 ***
 
