@@ -16,12 +16,25 @@ folder
 Copy the following files to your Jekyll site folder.
 
 * `_plugins/static_comments.rb`
-* `_layouts/comment_template.html`
+* `_includes/comments.html`
 * `_rake/blogger-comments.rake`
 * `Rakefile` (Not necessary if you already have a Rakefile that loads `_rake/*`)
 
+### Importing Blogger Comments
+
+When your posts all have the proper metadata [(as described below)](#post-setup), importing comments from Blogger is as simple as running `rake bloggercomments`
+
+This will copy each comment from Blogger to it's own file in the `_comments/` directory.
+
 ### Template Setup
 
+Copy the following line into your **Post** template where you would like comments to appear.
+
+`{% include comments.html %}`
+
+Alternatively, you could use `_includes/comments.html` as a guide to custom taylor the code to fit your site.
+
+You will also need to add some CSS to style comments appropriately.
 
 ### Post Setup
 
