@@ -1,105 +1,71 @@
-# Jekyll::StaticComments
+# Jekyll Blogger comments
+## Import comments from a Blogger blog into Jekyll
 
-Whilst most people go for a Disqus account, or some similar JS-abusing means
-of putting comments on their blog, I'm old-fashioned, and like my site to be
-dead-tree useable.  Hence this plugin: it provides a means of associating
-comments with posts and rendering them all as one big, awesome page.
+If you have migrated an posts from a Blogger blog to Jekyll,
+this plugin will allow you to keep the comments from the old Blogger posts.
 
-## Quick Start (or "what are all these files for?")
+This plugin assumes that the Blogger blog has not been deactivated.
+If it is unreachable via the Blogger API, this plugin will not be able to fetch comments.
 
-1. Put the `static_comments.rb` file in the `_plugins` directory of your
-Jekyll site.
+This plugin will download the posts comments from Blogger and cache them in the `_comments/`
+folder at the root of the Jekyll site. To refresh the comments, simply empty the `_comments/`
+folder
 
-1. Edit the variables at the top of `commentsubmit.php`, and then place it
-somewhere suitable in your site.
+### Installation
 
-1. Modify `comment_received.html` to your liking (add a YAML front-matter to
-render it in your site's style, for instance) and then place it alongside
-`commentsubmit.php`.
+Copy the following files to your Jekyll site folder.
 
-1. Using `comment_template.html` as a base, add the appropriate code to your
-blog post template.  Remember to provide an appropriate URL to
-`commentsubmit.php`.
+* `_plugins/static_comments.rb`
+* `_layouts/comment_template.html`
+* `_rake/blogger-comments.rake`
+* `Rakefile` (Not necessary if you already have a Rakefile that loads `_rake/*`)
 
-1. Create a `_comments` directory somewhere in your Jekyll site, and
-populate it with YAML comments (as produced by `commentsubmit.php`, or
-otherwise).
+### Template Setup
 
-1. Enjoy a wonderful, spam-free, static-commenting Nirvana.
 
-## Technical details
+### Post Setup
 
-To use StaticComments, you need to have a store of comments; this is a
-directory, called `_comments`, which contains all your comments.  You can
-have an arbitrary hierarchy inside this `_comments` directory (so you can
-put comments in post-specific directories, if you like), and the `_comments`
-directory can be anywhere in your site tree (I put it alongside my `_posts`
-directory).  The files containing comments can be named anything you like --
-every single file within the `_comments` directory will be read and parsed
-as a comment.
+For each post you would like to add comments to, you will also need to add the following data to the posts YAML front matter.
 
-Each file in `_comments` represents a single comment, as a YAML hash.  The
-YAML must contain a `post_id` attribute, which corresponds to the `id` of
-the post it is a comment on, but apart from that the YAML fields are
-anything you want them to be.
+    blogger:
+        siteid: NUMERIC SITE ID
+        postid: NUMERIC POST ID
 
-The fields in your YAML file will be mapped to fields in a Comment
-object.  There is a new `page.comments` field, which contains a list of the
-Comment objects for each post.  Iterating through a post and printing the
-comments is as simple as:
+For example:
 
-    {% for c in page.comments %}
-      <a href="{{c.link}}">{{c.nick}}</a>
-      <p>
-        {{c.content}}
-      </p>
-      <hr />
-    {% endfor %}
+    title: "Example Post"
+    layout: "post"
+    date: "2013-04-13 20:45:00"
+    blogger:
+        siteid: "8505008"
+        postid: "109657544490721509"
 
-This, of course, assumes that your YAML comments have the `link`, `nick`,
-and `content` fields.  Your mileage will vary.
+If you used [blogger2jekyll](https://github.com/coolaj86/blogger2jekyll) to migrate your Blogger posts, this data will likely already be included for each post.
 
-The order of the comments list returned in the page.comments array is
-based on the lexical ordering of the filenames that the comments are
-stored in.  Hence, you can preserve strict date ordering of your comments
-by ensuring that the filenames are based around the date/time of comment
-submission.
+## License
 
-Of course, the tricky bit in all this is getting the comments from your
-users into the filesystem.  For that, I'm using the `commentsubmit.php` in
-this repo, which simply takes all the fields in your comment form, dumps
-them straight into YAML, and e-mails it to me.  However, you can do whatever
-you like -- save them somewhere on your webserver for you to scp down later,
-or go the whole hog and have them automatically committed to your git repo
-and the site regenerated.
+`_plugins/static_comments.rb` and `_layouts/comment_template.html` from [jekyll-static-comments](https://github.com/mpalmer/jekyll-static-comments) and licensed under the [GNU General Public License, version 3](http://opensource.org/licenses/gpl-3.0.html)
 
-E-mailing the comments to you, though, is a fairly natural workflow.  You
-just save the comments out to your `_comments` directory, then re-generate
-the site and upload.  This provides a natural "moderation" mechanism, at the
-expense of discouraging wide-ranging "realtime" discussion.
+***
 
-## A caveat about Liquid
+`./Rakefile` from [jekyll-bootstrap](http://jekyllbootstrap.com/) and licensed under [The MIT License](http://opensource.org/licenses/MIT)
 
-Never use the word `comment` by itself as an identifier of any kind
-(variable, whatever) in your Liquid templates: the language considers it to
-be the start of a comment (regardless of where it appears) and eats your
-code.  Yes, apparently Liquid really *is* that stupid.  At the very least,
-you'll need to put a prefix or suffix or something so that Liquid doesn't
-think you're trying to execute it's `comment` function.
+Copyright &copy; 2012 Jade Dominguez
 
-## Still too much dynamic code?
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the 'Software'), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-If you like the idea of static comments, but you think that there's still
-too much dynamic code, then you might like to consider [Tomas Carnecky's
-even-more-static-comments](https://blog.caurea.org/2012/03/31/this-blog-has-comments-again.html),
-which uses a special per-post e-mail address to receive comments via a
-`mailto:` URL.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-## Licencing, bug reports, patches, etc
-
-This plugin is licenced under the terms of the [GNU GPL version
-3](http://www.gnu.org/licenses/gpl-3.0.html).  If it works for you, great. 
-If it doesn't, please [e-mail me](mailto:mpalmer@hezmatt.org) a patch with a
-description of the bug.  Bug reports without patches will probably be
-ignored unless I'm feeling in a good mood.  Particularly bug reports may be
-publically ridiculed.
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
