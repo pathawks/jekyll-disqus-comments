@@ -24,8 +24,9 @@ task :bloggercomments do
 		next
 	end
 
-	post_id   = post.url.gsub('.html','')
-	post_file = commentsdirectory + post_id.gsub('/','-').gsub(/^\-/,'')
+	post_id   = post.id()
+	post_date = post.date()
+	post_file = commentsdirectory + post_date.strftime('%Y-%m-%d-') + post.slug()
 
 	link  = '##'
 
@@ -57,7 +58,9 @@ task :bloggercomments do
 
 			comments.each do |comment|
 				author  = comment['author'][0].clone
-				comments_file = comment['id']['$t'].gsub(/tag\:blogger\.com\,1999\:blog\-\d+\.post\-/,'')
+				comments_date = DateTime.parse(comment['published']['$t'])
+				comments_file = comments_date.strftime('%Y-%m-%d-%H%M%S')
+
 				entry = YAML::Store.new("#{post_file}_#{comments_file}.txt")
 				entry.transaction do
 					entry['id'] = "c"+comment['id']['$t'].gsub(/tag\:blogger\.com\,1999\:blog\-\d+\.post\-/,'')
