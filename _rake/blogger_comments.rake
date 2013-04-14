@@ -77,11 +77,11 @@ task :bloggercomments do
 							entry['author']['image'] = comment['author'][0]['gd$image']['src']
 						end
 						entry['author']['name']    = comment['author'][0]['name']['$t']
-						entry['content']           = comment['content']['$t']
-						entry['title']             = comment['title']['$t']
+						entry['content']           = '<p>' + comment['content']['$t'].to_str.gsub('<BR/>','<br />') + '</p>'
+						entry['title']             = comment['title']['$t'].to_str
 						entry['date']              = DateTime.parse(comment['published']['$t'])
 						entry['updated']           = DateTime.parse(comment['updated']['$t'])
-						entry['post_id']           = post_id
+						entry['post_id']           = post_id.to_str
 						entry['source']            = 'Blogger'
 					end
 				end
