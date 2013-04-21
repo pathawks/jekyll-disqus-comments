@@ -37,7 +37,7 @@ task :disquscomments do
 		post_date = post.date()
 		post_file = commentsdirectory + post_date.strftime('%Y-%m-%d-') + post.slug()
 		
-		if post.data['comments'] and post.data['comments']['disqus'] and post.data['comments']['disqus']['short_name']
+		if (post.data['comments'].class == 'Array') and (post.data['comments']['disqus'].class == 'Array') and post.data['comments']['disqus']['short_name']
 			post_disqus_short_name = post.data['comments']['disqus']['short_name']
 		end
 	
