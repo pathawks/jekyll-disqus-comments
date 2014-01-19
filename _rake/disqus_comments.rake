@@ -63,7 +63,7 @@ task :disquscomments do
 		response = http.request(request)
 	
 		unless response.code == "200" then
-			warn "Comments feed not found: #{post_id}"
+			warn "\r\e[33mComments feed not found:\e[0m #{post_id}"
 		end
 	
 		if response.code == "200" then
