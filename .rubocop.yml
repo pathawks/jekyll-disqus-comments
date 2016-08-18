@@ -1,0 +1,19 @@
+inherit_gem:
+  jekyll: .rubocop.yml
+
+Metrics/LineLength:
+  Exclude:
+    - spec/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/FileName:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - vendor/**/*
+  TargetRubyVersion: 2.0
+  Include:
+    - _rake/*

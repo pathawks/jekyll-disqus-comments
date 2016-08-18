@@ -1,0 +1,17 @@
+sudo: false
+language: ruby
+cache: bundler
+script: script/cibuild
+
+rvm:
+  - 2.2
+
+matrix:
+  include:
+    - rvm: 2.2
+      env: TEST_SUITE=fmt
+
+# env:
+#   matrix:
+#     - TEST_SUITE=test
+#     - TEST_SUITE=cucumber
